@@ -3,10 +3,9 @@
 import pyglet
 import pyxhook
 import time
+import datetime
 from threading import Thread
 from sys import argv
-
-print(argv)
 
 player = pyglet.media.Player()
 file = pyglet.media.load(argv[1], streaming=True)
@@ -15,7 +14,7 @@ player.queue(file)
 hooking = True
 
 #Pyglet
-w = pyglet.window.Window(width = 250, height = 100)
+w = pyglet.window.Window(width = 250, height = 100, caption = argv[1])
 
 def back(n):
 	global player
@@ -29,6 +28,10 @@ def player_toggle():
 		back(1)
 		player.play()
 
+def get_time():
+	global player
+	return str(datetime.timedelta(seconds=player.time))[:-4]
+
 @w.event
 def on_close():
 	global hookman, hooking
@@ -40,6 +43,11 @@ def on_draw():
 	global hooking
 	w.clear()
 	label = pyglet.text.Label('Hello, world', font_name='Times New Roman', font_size=12, x=w.width//2, y=w.height//2, anchor_x='center', anchor_y='center').draw()
+	
+def update(dt):
+	w.set_caption(get_time())
+
+pyglet.clock.schedule_interval(update, 1/7)
 
 #pyxhook
 def kbevent(event):
