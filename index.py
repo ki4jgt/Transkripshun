@@ -5,6 +5,7 @@ import pyxhook
 import time
 import datetime
 from threading import Thread
+from os import system
 from sys import argv
 
 player = pyglet.media.Player()
@@ -32,6 +33,9 @@ def get_time():
 	global player
 	return str(datetime.timedelta(seconds=player.time))[:-4]
 
+def out(str):
+	system("xte \"str " + str + "\"")
+
 @w.event
 def on_close():
 	global hookman, hooking
@@ -56,6 +60,8 @@ def kbevent(event):
 		player_toggle()
 	if event.Key == "F4":
 		back(3)
+	if event.Key == "F8":
+		out(get_time())
 
 hookman = pyxhook.HookManager()
 hookman.KeyDown = kbevent
