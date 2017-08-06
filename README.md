@@ -1,5 +1,5 @@
 # Transkripshun
-Open source transcription software for Linux, Windows, and Mac. Comparable to ExpressScribe. Press F2 to play/pause. Press F4 to rewind 3 seconds.
+Open source transcription software for Linux, Windows, and Mac. Comparable to ExpressScribe. Press F2 to play/pause. Press F4 to rewind 3 seconds. With xautomation installed, you can use F8 to insert timestamps into your work.
 # Using
 You need to install Python3, Pyglet, and Avbin (if you're using any other audio format than WAV). Then you simply run the program as normal and supply your audio file as a commandline argument.
 # Notes
